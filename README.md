@@ -10,5 +10,6 @@ With Lazy.nvim, add the following to your configuration
   dependencies = {
     'nvim-lua/plenary.nvim',
   },
+  config = true,
 }
 ```

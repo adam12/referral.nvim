@@ -1,1 +1,0 @@
-require('referral').setup({})
