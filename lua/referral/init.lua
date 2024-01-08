@@ -6,7 +6,7 @@ M.setup = function(config)
 
   -- Set up binding for :Referral <x>
   vim.api.nvim_create_user_command('Referral', function(opts)
-    print('Running ' .. string.format([['referral %s']], opts.args))
+    vim.notify('Running ' .. string.format([['referral %s']], opts.args))
     vim.fn.setqflist({}, 'r')
 
     Job:new({
@@ -21,10 +21,12 @@ M.setup = function(config)
           end)
         end
 
-        print('Referral done!')
+        vim.schedule(function()
+          vim.notify('Referral done!')
+        end)
       end,
       on_stderr = function(_, msg)
-        print(msg)
+        vim.notify(msg)
       end,
     }):start()
   end,
