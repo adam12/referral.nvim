@@ -26,7 +26,9 @@ M.referral = function(opts)
       end)
     end,
     on_stderr = function(_, msg)
-      vim.notify(msg)
+      vim.schedule(function()
+        vim.notify(msg)
+      end)
     end,
   }):start()
 end
