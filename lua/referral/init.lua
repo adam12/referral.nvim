@@ -1,9 +1,9 @@
-local M = {}
+local referral = {}
 local Job = require('plenary.job')
 
 local function create_autocmds()
   vim.api.nvim_create_user_command('Referral', function(opts)
-    require('referral').referral(opts)
+    referral.execute(opts)
   end, {
     desc = 'look for references in ruby source code using the referral tool',
     nargs = '+',
@@ -11,11 +11,7 @@ local function create_autocmds()
   })
 end
 
-M.setup = function(config)
-  create_autocmds()
-end
-
-M.referral = function(opts)
+referral.execute = function(opts)
   vim.notify('Running ' .. string.format([['referral %s']], opts.args))
   vim.fn.setqflist({}, 'r')
 
@@ -43,4 +39,8 @@ M.referral = function(opts)
   }):start()
 end
 
-return M
+referral.setup = function(config)
+  create_autocmds()
+end
+
+return referral
