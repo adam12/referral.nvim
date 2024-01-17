@@ -1,8 +1,18 @@
 local M = {}
 local Job = require('plenary.job')
 
+local function create_autocmds()
+  vim.api.nvim_create_user_command('Referral', function(opts)
+    require('referral').referral(opts)
+  end, {
+    desc = 'look for references in ruby source code using the referral tool',
+    nargs = '+',
+    force = true
+  })
+end
+
 M.setup = function(config)
-  -- Do nothing
+  create_autocmds()
 end
 
 M.referral = function(opts)
